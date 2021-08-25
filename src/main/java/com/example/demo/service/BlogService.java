@@ -20,26 +20,33 @@ public class BlogService {
         this.blogRepository = blogRepository;
     }
 
-    public List<Blog> getblogs(){
-        return blogRepository.findAll();
+    public List<Blog> getblogs()
+    {
+//        return blogRepository.findBlogByBlogname("Miraim").get();
+        return (List<Blog>) blogRepository.findAll();
     }
 
-    public void addNewBlog(Blog student) {
-        Optional<Blog> studentOptional =  blogRepository.findStudentByText(student.getText());
-        if(studentOptional.isPresent()){
-            throw new IllegalStateException("email taken");
+    public Blog getblog(String blogname) {
+        return blogRepository.findBlogByBlogname(blogname).get();
+    }
+
+    public void addNewBlog(Blog blog) {
+        Optional<Blog> blogOptional =  blogRepository.findBlogByBlogname(blog.getBlogName());
+        if(blogOptional.isPresent()){
+            throw new IllegalStateException("blog name taken");
         }
-        blogRepository.save(student);
+        blogRepository.save(blog);
 //        System.out.println(student);
     }
 
-    public void deleteblog(Long studentId) {
-    Boolean exists = blogRepository.existsById(studentId);
+    @Transactional
+    public void deleteblog(String Blogname) {
+    Boolean exists = blogRepository.findBlogByBlogname(Blogname).isPresent();
 
     if (!exists){
-        throw new IllegalStateException("blog with id " + studentId + " does not exists" );
+        throw new IllegalStateException("blog with id " + Blogname + " does not exists" );
     }
-        blogRepository.deleteById(studentId);
+        blogRepository.deleteBlogByBlogname(Blogname);
     }
 
     @Transactional
@@ -50,13 +57,11 @@ public class BlogService {
         student.setBlogName(name);
     }
     if ( email != null && email.length() > 0 && !Objects.equals(student.getText() , email)){
-            Optional<Blog> studentOptional = blogRepository.findStudentByText(email);
-            if(studentOptional.isPresent()){
-                throw new IllegalStateException("email taken");
-            }
             student.setText(email);
     }
     }
+
+
 }
 
 

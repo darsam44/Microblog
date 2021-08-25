@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/blog")
+@RequestMapping(path = "/blog")
 public class BlogController {
 
 
@@ -21,10 +21,16 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping
+    @GetMapping("/trending")
     public List<Blog> getBlogs(){
 
         return blogService.getblogs();
+    }
+
+    @GetMapping(value = "/trending/{Blogname}" )
+    public Blog getBlog(@PathVariable String Blogname){
+
+        return blogService.getblog(Blogname);
     }
 
     @PostMapping
@@ -32,9 +38,9 @@ public class BlogController {
         blogService.addNewBlog(blog);
     }
 
-    @DeleteMapping(path = "{blogId}")
-    public void deleteBlog(@PathVariable("blogId") Long blogId){
-        blogService.deleteblog(blogId);
+    @DeleteMapping("/delete")
+    public void deleteBlog(@RequestParam(value = "name") String name){
+        blogService.deleteblog(name);
     }
 
     @PutMapping(path = "{blogId}")

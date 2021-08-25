@@ -6,15 +6,15 @@ import java.time.Period;
 
 @Entity
 @Table
-public class Blog {
+public class Blog implements Comparable<Blog> {
     @Id
-    @SequenceGenerator( name = "student_sequence",
-                        sequenceName = "student_sequence",
+    @SequenceGenerator( name = "blog_sequence",
+                        sequenceName = "blog_sequence",
                         allocationSize = 1)
 
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "blog_sequence"
     )
 
     private  Long id;
@@ -24,16 +24,21 @@ public class Blog {
 //    @Transient  // this field right you dont neew to be colum in our database
     private Integer likes;
 
-    public Blog() {
-    }
+    public Blog() { }
 
-    public Blog(String blogname, String text, LocalDate uploadblog) {
+    public Blog(String blogname, String text) {
         this.blogname = blogname;
         this.text = text;
-        this.uploadblog = uploadblog;
+        this.uploadblog = LocalDate.now();
         this.likes = 0;
     }
 
+    public Blog(String blogname, String text, Integer like) {
+        this.blogname = blogname;
+        this.text = text;
+        this.uploadblog = LocalDate.now();
+        this.likes = like;
+    }
 
     public Long getId() {
         return id;
@@ -84,5 +89,20 @@ public class Blog {
                 ", dob=" + uploadblog +
                 ", age=" + likes +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Blog other_blog) {
+       if(other_blog.getUploadblog().isAfter(getUploadblog())){
+           if( getLikes() >= other_blog.getLikes()){
+               return 1;
+           }
+           else {
+               return -1;
+           }
+       }
+       else {
+           return -1;
+       }
     }
 }

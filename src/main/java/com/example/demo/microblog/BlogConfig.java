@@ -11,24 +11,22 @@ import java.time.Month;
 import java.util.List;
 
 @Configuration
-public class StudentConfig {
+public class BlogConfig {
 
     @Bean
     CommandLineRunner commandLineRunner(BlogRepository repository){
         return args ->{
-        Blog mariam = new Blog(
-                    "Miraim" ,
-                    "mariam@gmail.com",
-                    LocalDate.of(2000, Month.JANUARY , 5)
+        Blog Blog1 = new Blog(
+                    "First Blog" ,
+                    "this is my first blog"
                     );
 
-        Blog Alex =   new Blog(
-                "Alex" ,
-                "Alex@gmail.com",
-                LocalDate.of(2004, Month.JANUARY , 5)
+        Blog Blog2 =   new Blog(
+                "Second Blog" ,
+                "My second blog is on.."
                 );
 
-        repository.saveAll(List.of(mariam,Alex));
+        repository.saveAll(List.of(Blog1,Blog2));
 
         };
         }
