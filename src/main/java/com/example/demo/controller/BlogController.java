@@ -6,7 +6,6 @@ import com.example.demo.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/blog")
@@ -22,15 +21,21 @@ public class BlogController {
     }
 
     @GetMapping("/trending")
-    public List<Blog> getBlogs(){
+    public Iterable<Blog> getBlogs(){
 
         return blogService.getblogs();
     }
 
     @GetMapping(value = "/trending/{Blogname}" )
-    public Blog getBlog(@PathVariable String Blogname){
+    public Blog getBlogByName(@PathVariable String Blogname){
 
-        return blogService.getblog(Blogname);
+        return blogService.getBlogByName(Blogname);
+    }
+
+    @GetMapping(value = "/trending/{Id}" )
+    public Blog getBlogById(@PathVariable Long Id){
+
+        return blogService.getBlogById(Id);
     }
 
     @PostMapping
@@ -39,8 +44,8 @@ public class BlogController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteBlog(@RequestParam(value = "name") String name){
-        blogService.deleteblog(name);
+    public void deleteBlog(@RequestParam(value = "Id") Long Id){
+        blogService.deleteblog(Id);
     }
 
     @PutMapping(path = "{blogId}")
@@ -52,4 +57,13 @@ public class BlogController {
         blogService.Updateblog(blogId , name , email);
      }
 
+    @PutMapping("/Upvote")
+    public void updateBlogLike(
+            @RequestParam(value = "Id") Long Id) {
+        blogService.Updatebloglike(Id);
+    }
+
 }
+
+
+

@@ -22,11 +22,15 @@ public class BlogConfig {
                     );
 
         Blog Blog2 =   new Blog(
-                "Second Blog" ,
-                "My second blog is on.."
-                );
+                    "Second Blog" ,
+                    "My second blog is on.."
+            );
+            Blog Blog3 =   new Blog(
+                    "Third Blog" ,
+                    "My third blog is on.."
+            );
 
-        repository.saveAll(List.of(Blog1,Blog2));
+        repository.saveAll(List.of(Blog1,Blog2,Blog3));
 
         };
         }

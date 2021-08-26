@@ -82,7 +82,7 @@ public class Blog implements Comparable<Blog> {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Blog{" +
                 "id=" + id +
                 ", name='" + blogname + '\'' +
                 ", email='" + text + '\'' +
@@ -93,16 +93,16 @@ public class Blog implements Comparable<Blog> {
 
     @Override
     public int compareTo(Blog other_blog) {
-       if(other_blog.getUploadblog().isAfter(getUploadblog())){
-           if( getLikes() >= other_blog.getLikes()){
-               return 1;
+       if(other_blog.getUploadblog().isAfter(getUploadblog()) || other_blog.getUploadblog().isEqual(getUploadblog())){
+           if( getLikes() > other_blog.getLikes()){
+               return -1;
            }
            else {
-               return -1;
+               return 1;
            }
        }
        else {
-           return -1;
+           return 1;
        }
     }
 }
