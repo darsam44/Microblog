@@ -38,7 +38,7 @@ and add json:
  "text": "Text of the Blog"
 }
 
-You can't creat new Blog with Name that already exist.
+You can't create new Blog with Name that already exist.
 
 <h4> To Delete Blog </h4>
 
