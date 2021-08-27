@@ -44,6 +44,9 @@ public class BlogService {
         if(blogOptional.isPresent()){
             throw new IllegalStateException("This Blog name is already exists");
         }
+        if(blog.getBlogName() == null || blog.getBlogName().length() < 1){
+            throw new IllegalStateException("You must give name to blog");
+        }
         Blog b = new Blog(blog.getBlogName() , blog.getText());
         blogRepository.save(b);
     }
@@ -80,8 +83,7 @@ public class BlogService {
         }
         Blog blog = blogRepository.findById(blogId).get();
         Integer Likes = blog.getLikes();
-        Likes = Likes +1;
-        System.out.println(Likes);
+        Likes++;
         blog.setLikes(Likes);
     }
 

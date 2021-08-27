@@ -26,15 +26,13 @@ public class BlogController {
         return blogService.getblogs();
     }
 
-    @GetMapping(value = "/trending/{Blogname}" )
+    @GetMapping(value = "/trending/blogname/{Blogname}" )
     public Blog getBlogByName(@PathVariable String Blogname){
-
         return blogService.getBlogByName(Blogname);
     }
 
-    @GetMapping(value = "/trending/{Id}" )
+    @GetMapping(value = "/trending/id/{Id}" )
     public Blog getBlogById(@PathVariable Long Id){
-
         return blogService.getBlogById(Id);
     }
 
@@ -52,9 +50,8 @@ public class BlogController {
     public void updateBlog(
             @PathVariable("blogId") Long blogId,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String email) {
-
-        blogService.Updateblog(blogId , name , email);
+            @RequestParam(required = false) String text) {
+        blogService.Updateblog(blogId , name , text);
      }
 
     @PutMapping("/Upvote")
