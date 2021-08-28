@@ -21,7 +21,6 @@ public class Blog implements Comparable<Blog> {
     private String blogname;
     private String text;
     private LocalDate uploadblog;
-//    @Transient  // this field right you dont neew to be colum in our database
     private Integer likes;
 
     public Blog() { }
