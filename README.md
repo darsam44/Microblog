@@ -61,7 +61,34 @@ You can't create new Blog with Name that already exist.
 `$ http://localhost:8080/blog/Upvote?Id={Id blog you want to give a like}`
 
 
+<h1> How to use dockerfile? </h1>
+clone the appliction, you need to have docker on your computer.
 
+<h4>you can check it by wirte int the terminal:</h4>
+
+`$ docker -v`
+
+Now: get into Maven and run clean and install (this need to make you a new jar file with name blog-spring-boot.jar)
+
+<h2>in the Terminal: </h2>
+
+<h4> build the docker image: </h4>
+
+`$ docker build -f Dockerfile -t blog-spring-boot .`
+
+You can check if you have the image by:
+
+`$ docker images`
+
+it should look like this: 
+
+REPOSITORY         TAG       IMAGE ID       CREATED        SIZE
+
+blog-spring-boot   latest    dbc273f8e3f9   4 hours ago    510MB
+
+<h4> To run the Image: </h4>
+
+`$ docker run -p 8080:8080 blog-spring-boot`
 
 
 
