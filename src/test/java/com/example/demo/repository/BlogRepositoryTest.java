@@ -48,5 +48,13 @@ class BlogRepositoryTest {
 
     @Test
     void deleteBlogByBlogname() {
+        Blog b = new Blog(
+                "This is Dar Blog",
+                "At this Blog i want to see if i can add"
+        );
+        underTest.save(b);
+        underTest.delete(b);
+        boolean flag = underTest.findBlogByBlogname("This is Dar Blog").isPresent();
+        assertFalse(flag);
     }
 }

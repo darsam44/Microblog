@@ -21,7 +21,7 @@ public class BlogService {
     public Iterable<Blog> getblogs()
     {
         List<Blog> blog = (List<Blog>) blogRepository.findAll();
-        Collections.sort(blog);
+        Collections.sort(blog); //sort the Blog by likes and time of create
         return blog;
     }
 
@@ -50,7 +50,6 @@ public class BlogService {
         Blog b = new Blog(blog.getBlogName() , blog.getText());
         blogRepository.save(b);
     }
-
 
 
     @Transactional

@@ -91,6 +91,8 @@ public class Blog implements Comparable<Blog> {
                 '}';
     }
 
+
+    // make a compre to know how to sort the array
     @Override
     public int compareTo(Blog other_blog) {
        if(other_blog.getUploadblog().isAfter(getUploadblog()) || other_blog.getUploadblog().isEqual(getUploadblog())){
