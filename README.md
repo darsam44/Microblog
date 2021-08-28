@@ -2,11 +2,11 @@
 
 Micro blog is a blog service that allows saving, updating and reading blog posts (simple text).
 
-Create a RESTful JSON API to handle the post resource (create, update, read, delete).
+Microblog is a  RESTful JSON API that handle the post resource (create, update, read, delete).
 
 A user can “Like” a blog post.
 
-The service should also expose an API endpoint for receiving top trending(consider both created time and number of “likes”) posts.
+The service also expose an API endpoint for receiving top trending(consider both created time and number of “likes”) posts.
 
 The service accepts JSON requests and responds with a JSON response.
 
